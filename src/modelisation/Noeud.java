@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas & Manon
  * @param <Comparable>
  */
 
@@ -18,8 +18,7 @@ import java.util.ArrayList;
 	les feuilles sont définies par un Noeud dont les fils sont tous null,
 	L'ordre de l'arbre détermine la taille des tableaux fils, clefs et valeurs.*/
 public class Noeud <Comparable>{
-	
-	
+
 	private Noeud<Comparable> pere;		//Noeud présent au dessus du Noeud dans lequel on se trouve (utile pour les algorithmes de recherche), la racine n'en a pas.
 	private Noeud<Comparable> voisin;	//Noeud présent à droite du Noeud dans lequel on se trouve (utile pour la fusion et la recherche par intervalle).
 	private Noeud<Comparable>[] fils;	//Noeuds liés au Noeud dans lequel on se trouve (sa taille est égale à Arbre.ordre+1).

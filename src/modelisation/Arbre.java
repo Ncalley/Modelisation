@@ -7,7 +7,7 @@ package modelisation;
 
 /**
  * @version beta 0.1
- * @author Nicolas
+ * @author Nicolas & Manon
  * @param <Comparable>
  */
 

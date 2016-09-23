@@ -7,7 +7,7 @@ package modelisation;
 
 /**
  *
- * @author Nicolas
+ * @author Nicolas & Manon
  */
 public class Modelisation {
 
