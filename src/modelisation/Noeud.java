@@ -44,7 +44,7 @@ public class Noeud <Comparable>{
 		this.clefs = ((Comparable[])(listClefs).toArray());								//On transforme la liste ainsi créée en tableau des bons éléments et de la bonne taille pour les clefs.
 		this.voisin=null;																//Par défaut le Noeud n'a pas de voisin de droite, on pourra modifier cela en insérant le Noeud dans l'arbre.
 	}
-
+        
 	//Accesseurs
 	public Noeud<Comparable> getPere() {
 		return pere;
@@ -89,11 +89,17 @@ public class Noeud <Comparable>{
         
         
         public Boolean isRacine(){ //Fonction qui va permettre de tester rapidement 
-            
+            return this.pere == null;
         }
         
         public Boolean isFeuille(){
-            
+            return true;
         }
+        public void insérer(Comparable ajout, Object val){
+            if ( this.isFeuille() && this.isRacine()){
+                
+            }
+        }
+
 	
 }
