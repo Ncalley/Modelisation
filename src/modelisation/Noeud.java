@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelisation;
 
 import java.util.ArrayList;
@@ -89,5 +85,15 @@ public class Noeud <Comparable>{
 	public void setClefs(Comparable[] clefs) {
 		this.clefs = clefs;
 	}
+        
+        
+        
+        public Boolean isRacine(){ //Fonction qui va permettre de tester rapidement 
+            
+        }
+        
+        public Boolean isFeuille(){
+            
+        }
 	
 }
