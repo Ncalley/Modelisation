@@ -11,11 +11,11 @@ package modelisation;
 	il contient des références vers les objets de la base de donnée,
 	ces objets sont triées par clé dans l'arbre et les clés doivent donc être comparables par définition,
 	l'ordre de l'arbre est donnée par l'utilisateur et déterminera la construction de l'arbre ainsi que la stratégie de split.*/
-public class Arbre <Comparable>{
+public class Arbre <E extends Comparable>{
 	
 	
 	private int ordre;					//Il s'agit de l'ordre de l'arbre
-	private Noeud<Comparable> racine;
+	private Noeud<E> racine;
 
 	public Arbre(int ordre) throws Exception{
 		if(ordre<2){throw new Exception("L'arbre ne peut pas avoir un ordre négatif");}
@@ -27,13 +27,19 @@ public class Arbre <Comparable>{
 		return ordre;
 	}
 
-	public Noeud<Comparable> getRacine() {
+	public Noeud getRacine() {
 		return racine;
 	}
         
-        public void afficher(){
+    public void afficher(){
             
-        }
+    }
 
+	public void add(Noeud<E> n){
+		
+	}
 	
+	public void remove(Noeud<E> n){
+		
+	}
 }
