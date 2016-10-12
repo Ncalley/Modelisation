@@ -94,14 +94,16 @@ public class Arbre<E extends Comparable> {
             }
 
     }
-
+    
+    public Feuille rechercheFirstF(){
+        
+    }
  
     public String afficher() {
         String aff ="";
-        //on va afficher toutes les feuilles avec leurs peres 
-        // pere pere pere feuille
-        //while getVoisins != null){
-            //aff = aff + \n + getVoisin.toString()
+        //on va cehrcher la première feuille 
+        //et tant que la prochaine existe (voisins existe) afficher tout
+        
 
        return aff;
     }

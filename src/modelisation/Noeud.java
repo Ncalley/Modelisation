@@ -91,5 +91,12 @@ public abstract class Noeud<E extends Comparable> {
     public abstract String toString();
     public abstract void addIn(E cle, Object valeur);
     
+    public String clefsToString(){
+        String n = "(";
+        for (int i = 0; i < clefs.length; i++) {
+            n = n + clefs[i] + " ";
+        }
+        return n + ")";
+    }
        
 }

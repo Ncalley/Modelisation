@@ -26,7 +26,7 @@ public class Feuille<E extends Comparable> extends Noeud<E> {
         this.pere = pere;																//On donne la valeur du père.
 
         //Il est impossible de créer directement des tableaux d'éléments génériques avec une taille définie à l'avance en java, on utilise donc des ArrayList que l'on convertira en tableaux après.
-        ArrayList<Noeud<E>> listNoeud = new ArrayList<Noeud<E>>();	//On crée une liste de Noeuds vide (taille 0).
+        ArrayList<NoeudN<E>> listNoeud = new ArrayList<NoeudN<E>>();	//On crée une liste de Noeuds vide (taille 0).
         ArrayList<E> listClefs = new ArrayList<E>();					//On crée une liste d'objets comparables (taille 0).
         ArrayList listValeurs = new ArrayList();
         for (int i = 0; i < ordre; i++) {
@@ -67,11 +67,18 @@ public class Feuille<E extends Comparable> extends Noeud<E> {
             valeur = valeur2;
         }
     }
+    
+        public String valeursToString(){
+        String n = "[";
+        for (int i = 0; i < valeurs.length; i++) {
+            n = n + valeurs[i] + " ";
+        }
+        return n + "]";
+    }
 
     @Override
     public String toString (){
-        //return getPere().toString + clefsToString() + valeurToString() 
-        return "";
+        return getPere().toString() + clefsToString() + valeursToString();
     }
     
 }

@@ -5,7 +5,9 @@
         <group name="ProjetAlgoFichiers"/>
         <group>
             <file>file:/C:/Users/Manon/Documents/GitHub/Modelisation/src/modelisation/Noeud.java</file>
+            <file>file:/C:/Users/Manon/Documents/GitHub/Modelisation/src/modelisation/Feuille.java</file>
             <file>file:/C:/Users/Manon/Documents/GitHub/Modelisation/src/modelisation/NoeudN.java</file>
+            <file>file:/C:/Users/Manon/Documents/GitHub/Modelisation/src/modelisation/Arbre.java</file>
             <file>file:/C:/Users/Manon/Documents/GitHub/Modelisation/src/modelisation/Modelisation.java</file>
         </group>
     </open-files>
