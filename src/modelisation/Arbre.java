@@ -33,7 +33,7 @@ public class Arbre<E extends Comparable> {
 
     public void add(E cle, Object valeur) {
         if (racine == null) {
-            Feuille f = new Feuille(null, ordre);
+            Feuille f = new Feuille(null,ordre);
             internalAdd(f, cle, valeur);
         } else {
             Feuille n = racine.find(cle); // on trouve a quel endroit la valeur clé doit etre insérer
@@ -43,9 +43,7 @@ public class Arbre<E extends Comparable> {
         }
     }
 
-    /*Si racine on arrête de chercher
-	ce qu'elle doit faire:
-		- si*/
+   
     private void internalAdd(Feuille<E> n, E cle, Object valeur) {
         //On commence l'insertion donc on ets forcément dans une feuille
         if (n.valueNbr() != ordre) { // si le noeud n'est pas plain on ajoute simplement grace à la methode addIn
@@ -65,24 +63,24 @@ public class Arbre<E extends Comparable> {
                     if (pos == i) { //oui je sais c'est pas vraiment opti mais ca marche
                         n1.addIn(cle, valeur);
                         if (midOrdre == i) {//dans le cas ou on ajoute la valeur et qu'on est a la fin du split
-                            n2.addIn(n.getClefs()[i], n.getValeurs()[i]);
+                            n2.addIn(n.getClefs().get(i),n.getValeurs().get(i));
                         } else {
-                            n1.addIn(n.getClefs()[i], n.getValeurs()[i]);
+                            n1.addIn(n.getClefs().get(i),n.getValeurs().get(i));
                         }
                     } else {
-                        n1.addIn(n.getClefs()[i], n.getValeurs()[i]);
+                        n1.addIn(n.getClefs().get(i),n.getValeurs().get(i));
                     }
 
                 } else {
                     if (pos == i) {
                         n1.addIn(cle, valeur);
                     }
-                    n2.addIn(n.getClefs()[i], n.getValeurs()[i]);
+                    n2.addIn(n.getClefs().get(i),n.getValeurs().get(i));
 
                 }
                 n1.setVoisin(n2); //N2 est le voisin de n1
             }
-            E mediane = n2.getClefs()[0];
+            E mediane = n2.getClefs().get(0);
             if (!n.isRacine()) {
                 n.getPere().addFils(n1); //On ajoute les nouveaux fils au pere
                 n.getPere().addFils(n2);
@@ -91,7 +89,7 @@ public class Arbre<E extends Comparable> {
                 NoeudN pere = new NoeudN(null, ordre);
                 pere.addFils(n1);
                 pere.addFils(n2);
-                pere.getClefs()[0] = mediane;
+                pere.getClefs().set(0,mediane);
             }
 
         }
@@ -107,5 +105,20 @@ public class Arbre<E extends Comparable> {
         //et tant que la prochaine existe (voisins existe) afficher tout
 
         return aff;
+    }
+    
+    public Object research(E cle){
+        if (racine == null){
+            return null;
+        }
+        else{
+            //la feuille dans laquelle est la valeur
+            Feuille f = racine.find(cle);
+            if (f.contains(cle)){
+                return f.getValeurs().get(f.findIn(cle));
+            }
+            else {return null;}
+                
+        }
     }
 }

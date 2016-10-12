@@ -15,9 +15,19 @@ import java.util.ArrayList;
 	L'ordre de l'arbre détermine la taille des tableaux fils, clefs et valeurs.*/
 public abstract class Noeud<E extends Comparable> {
 
-    public NoeudN<E> pere;		//Noeud présent au dessus du Noeud dans lequel on se trouve (utile pour les algorithmes de recherche), la racine n'en a pas.
-    public Noeud<E> voisin;	//Noeud présent à droite du Noeud dans lequel on se trouve (utile pour la fusion et la recherche par intervalle).
-    public E[] clefs;
+    protected NoeudN<E> pere;		//Noeud présent au dessus du Noeud dans lequel on se trouve (utile pour les algorithmes de recherche), la racine n'en a pas.
+    protected Noeud<E> voisin;	//Noeud présent à droite du Noeud dans lequel on se trouve (utile pour la fusion et la recherche par intervalle).
+    protected ArrayList<E> clefs;
+    protected int ordre;
+
+	public int getOrdre() {
+		return ordre;
+	}
+
+	public void setOrdre(int ordre) {
+		this.ordre = ordre;
+	}
+	
 
     public NoeudN<E> getPere() {
         return pere;
@@ -35,17 +45,17 @@ public abstract class Noeud<E extends Comparable> {
         this.voisin = voisin;
     }
 
-    public E[] getClefs() {
+    public ArrayList<E> getClefs() {
         return clefs;
     }
 
-    public void setClefs(E[] clefs) {
+    public void setClefs(ArrayList<E> clefs) {
         this.clefs = clefs;
     }
 
-    public int valueNbr() {
+    public int valueNbr() { 
         int nbr = 0;
-        for (Comparable elt : clefs) {
+        for (E elt : this.getClefs()) {
             if (elt != null) {
                 nbr++;
             } else {
@@ -67,8 +77,8 @@ public abstract class Noeud<E extends Comparable> {
     public abstract Feuille find(E cle);
 
     public int findIn(E cle) {
-        for (int i = 0; i < clefs.length; i++) {
-            if (cle.equals(clefs[i])) {
+        for (int i = 0; i < clefs.size(); i++) {
+            if (cle.equals(clefs.get(i))) {
                 return i;
             }
         }
@@ -76,12 +86,12 @@ public abstract class Noeud<E extends Comparable> {
     }
 
     public int findPos(E cle) {
-        for (int i = 0; i < clefs.length; i++) {
-            if (clefs[i] == null || cle.compareTo(clefs[i]) > 0) {
+        for (int i = 0; i < clefs.size(); i++) {
+            if (clefs.get(i) == null || cle.compareTo(clefs.get(i)) > 0) {
                 return i;
             }
         }
-        return clefs.length;
+        return clefs.size();
     }
     
     public boolean isRacine() {
@@ -91,12 +101,20 @@ public abstract class Noeud<E extends Comparable> {
     public abstract String toString();
     public abstract void addIn(E cle, Object valeur);
     
+	//renvoie un résultat de type (5,6,8,10)
     public String clefsToString(){
-        String n = "(";
-        for (int i = 0; i < clefs.length; i++) {
-            n = n + clefs[i] + " ";
+        StringBuffer n = new StringBuffer(clefs.size()*clefs.get(0).toString().length()+2);
+		n.append("(");
+        for (int i = 0; i < clefs.size()-1; i++) {
+            n.append(clefs.get(i) + ",");
         }
-        return n + ")";
+		n.append(clefs.get(clefs.size()-1));
+		n.append(")");
+        return n.toString();
+    }
+    
+    public void remove(E cle){
+        //
     }
        
 }

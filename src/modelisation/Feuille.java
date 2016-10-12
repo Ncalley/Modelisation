@@ -13,39 +13,26 @@ import java.util.ArrayList;
  */
 public class Feuille<E extends Comparable> extends Noeud<E> {
 
-    private Object[] valeurs;			//Tableau de références vers les objets de la base de donnée.
+    private ArrayList valeurs;			//Tableau de références vers les objets de la base de donnée.
 
-    public Feuille(NoeudN<E> pere, modelisation.Noeud<E> voisin, E[] clefs, Object[] valeurs) {
+    public Feuille(NoeudN<E> pere, modelisation.Noeud<E> voisin, ArrayList<E> clefs, ArrayList valeurs, int ordre) {
         this.pere = pere;
         this.voisin = voisin;
         this.clefs = clefs;
         this.valeurs = valeurs;
+		this.ordre = ordre;
+    }
+    
+    public Feuille(NoeudN<E> pere, int ordre){
+        this.pere = pere;
+        this.ordre = ordre;
     }
 
-    public Feuille(NoeudN<E> pere, int ordre) {
-        this.pere = pere;																//On donne la valeur du père.
-
-        //Il est impossible de créer directement des tableaux d'éléments génériques avec une taille définie à l'avance en java, on utilise donc des ArrayList que l'on convertira en tableaux après.
-        ArrayList<NoeudN<E>> listNoeud = new ArrayList<NoeudN<E>>();	//On crée une liste de Noeuds vide (taille 0).
-        ArrayList<E> listClefs = new ArrayList<E>();					//On crée une liste d'objets comparables (taille 0).
-        ArrayList listValeurs = new ArrayList();
-        for (int i = 0; i < ordre; i++) {
-            listNoeud.add(null);
-            listClefs.add(null);
-            listValeurs.add(null);
-        }		//On modifie la taille des listes en ajoutant des éléments null.
-        listNoeud.add(null);
-
-        this.clefs = ((E[]) (listClefs).toArray());								//On transforme la liste ainsi créée en tableau des bons éléments et de la bonne taille pour les clefs.
-        this.valeurs = ((Object[]) (listValeurs).toArray());
-        this.voisin = null;
-    }
-
-    public Object[] getValeurs() {
+    public ArrayList getValeurs() {
         return valeurs;
     }
 
-    public void setValeurs(Object[] valeurs) {
+    public void setValeurs(ArrayList valeurs) {
         this.valeurs = valeurs;
     }
 
@@ -59,11 +46,11 @@ public class Feuille<E extends Comparable> extends Noeud<E> {
         int pos = findPos(cle);
         E cle2 = null;
         Object valeur2 = null;
-        for (int i = pos; i < clefs.length; i++) {
-            cle2 = clefs[i];
-            valeur2 = valeurs[i];
-            clefs[i] = cle;
-            valeurs[i] = valeur;
+        for (int i = pos; i < clefs.size(); i++) {
+            cle2 = clefs.get(i);
+            valeur2 = valeurs.get(i);
+            clefs.set(i, cle);
+            valeurs.set(i, valeur);
             cle = cle2;
             valeur = valeur2;
         }
@@ -71,15 +58,21 @@ public class Feuille<E extends Comparable> extends Noeud<E> {
     
         public String valeursToString(){
         String n = "[";
-        for (int i = 0; i < valeurs.length; i++) {
-            n = n + valeurs[i] + " ";
+        for (int i = 0; i < valeurs.size(); i++) {
+            n = n + valeurs.get(i) + " ";
         }
         return n + "]";
     }
 
     @Override
     public String toString (){
-        return getPere().toString() + clefsToString() + valeursToString();
+		StringBuffer s = new StringBuffer((clefs.size()*clefs.get(0).toString().length()+2)*(valeurs.size()+1)+2);
+		s.append(this.clefsToString());
+		s.append("[");
+		for(Object elt: valeurs){
+			s.append(elt.toString());
+		}
+		s.append("]");
+        return s.toString();
     }
-    
 }
