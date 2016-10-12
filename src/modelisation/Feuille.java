@@ -54,6 +54,7 @@ public class Feuille<E extends Comparable> extends Noeud<E> {
         return this;
     }
 
+    @Override
     public void addIn(E cle, Object valeur) {
         int pos = findPos(cle);
         E cle2 = null;
